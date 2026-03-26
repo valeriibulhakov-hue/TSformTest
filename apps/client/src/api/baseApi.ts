@@ -1,12 +1,14 @@
-import { createApi } from '@reduxjs/toolkit/query/react'
+import { createApi, type BaseQueryFn } from '@reduxjs/toolkit/query/react'
 
 type GraphQLArgs = {
   document: { toString(): string }
   variables?: Record<string, unknown> | void
 }
 
-const graphqlBaseQuery = (baseUrl: string) =>
-  async ({ document, variables }: GraphQLArgs) => {
+const graphqlBaseQuery = (
+  baseUrl: string,
+): BaseQueryFn<GraphQLArgs, unknown, unknown> =>
+  async ({ document, variables }) => {
     try {
       const response = await fetch(baseUrl, {
         method: 'POST',
@@ -16,7 +18,7 @@ const graphqlBaseQuery = (baseUrl: string) =>
           variables: variables ?? undefined,
         }),
       })
-      const json = await response.json()
+      const json = await response.json() as { data?: unknown; errors?: unknown }
       if (json.errors) return { error: json.errors }
       return { data: json.data }
     } catch (error) {
