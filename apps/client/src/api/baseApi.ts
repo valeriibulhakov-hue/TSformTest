@@ -24,9 +24,11 @@ const graphqlBaseQuery = (baseUrl: string) =>
     }
   }
 
+const API_URL = import.meta.env.VITE_API_URL ?? 'http://localhost:4000/graphql'
+
 export const api = createApi({
   reducerPath: 'api',
-  baseQuery: graphqlBaseQuery('http://localhost:4000/graphql'),
+  baseQuery: graphqlBaseQuery(API_URL),
   tagTypes: ['Form', 'Response'],
   endpoints: () => ({}),
 })
