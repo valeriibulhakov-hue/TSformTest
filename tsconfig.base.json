@@ -1,0 +1,9 @@
+{
+  "compilerOptions": {
+    "baseUrl": ".",
+    "paths": {
+      "@ts_forms/shared/*": ["packages/shared/src/*"],
+      "@shared/*": ["packages/shared/src/*"]
+    }
+  }
+}
