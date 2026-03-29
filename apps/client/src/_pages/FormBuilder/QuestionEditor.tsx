@@ -1,15 +1,16 @@
 import React from 'react'
 import { Plus, X } from 'lucide-react'
-import type { Question, QuestionType } from './useFormBuilder'
+import type { Question } from './useFormBuilder'
+import { QuestionType } from '../../api/generated'
 
 const TYPES: { value: QuestionType; label: string }[] = [
-  { value: 'TEXT',            label: 'Text' },
-  { value: 'MULTIPLE_CHOICE', label: 'Multiple choice' },
-  { value: 'CHECKBOX',        label: 'Checkbox' },
-  { value: 'DATE',            label: 'Date' },
+  { value: QuestionType.Text,           label: 'Text' },
+  { value: QuestionType.MultipleChoice, label: 'Multiple choice' },
+  { value: QuestionType.Checkbox,       label: 'Checkbox' },
+  { value: QuestionType.Date,           label: 'Date' },
 ]
 
-const HAS_OPTIONS: QuestionType[] = ['MULTIPLE_CHOICE', 'CHECKBOX']
+const HAS_OPTIONS: QuestionType[] = [QuestionType.MultipleChoice, QuestionType.Checkbox]
 
 interface Props {
   question: Question
@@ -76,9 +77,8 @@ export const QuestionEditor: React.FC<Props> = ({
         {question.options.map((opt, idx) => (
           <div key={idx} style={{ display: 'flex', alignItems: 'center', gap: 8, marginBottom: 8 }}>
             <div style={{
-              width: question.type === 'CHECKBOX' ? 11 : 11,
-              height: 11, flexShrink: 0,
-              borderRadius: question.type === 'CHECKBOX' ? 3 : '50%',
+              width: 11, height: 11, flexShrink: 0,
+              borderRadius: question.type === QuestionType.Checkbox ? 3 : '50%',
               border: '1.5px solid rgba(255,255,255,0.2)',
             }} />
             <input

@@ -1,4 +1,4 @@
-import React from 'react'
+import { QuestionType } from '../../api/generated'
 import type { Response, Question } from './useFormResponses'
 
 interface Props {
@@ -10,7 +10,7 @@ interface Props {
 
 const formatAnswer = (value: string | null, type: string) => {
   if (!value) return null
-  if (type === 'MULTIPLE_CHOICE' || type === 'CHECKBOX') {
+  if (type === QuestionType.MultipleChoice || type === QuestionType.Checkbox) {
     return value.split(', ').filter(Boolean)
   }
   return [value]
@@ -50,20 +50,18 @@ export const ResponseCard: React.FC<Props> = ({ response, index, questions, getA
               borderBottom: isLast ? 'none' : '1px solid rgba(255,255,255,0.05)',
             }}
           >
-            {/* Question */}
             <div style={{ width: 200, flexShrink: 0 }}>
               <p style={{ fontSize: 11, color: 'var(--text-muted)', lineHeight: 1.5 }}>
                 {q.title}
               </p>
             </div>
 
-            {/* Answer */}
             <div style={{ flex: 1 }}>
               {!parts ? (
                 <span style={{ fontSize: 13, color: '#1e293b', fontStyle: 'italic' }}>
                   No answer
                 </span>
-              ) : parts.length === 1 && q.type !== 'MULTIPLE_CHOICE' && q.type !== 'CHECKBOX' ? (
+              ) : parts.length === 1 && q.type !== QuestionType.MultipleChoice && q.type !== QuestionType.Checkbox ? (
                 <span style={{ fontSize: 13, color: 'var(--text-secondary)', lineHeight: 1.5 }}>
                   {parts[0]}
                 </span>

@@ -1,8 +1,6 @@
-import React from 'react'
 import { useParams } from 'react-router-dom'
 import { Send, AlertCircle } from 'lucide-react'
-import { useGetFormQuery, useSubmitResponseMutation } from '../../api/generated'
-import type { QuestionType } from '../../api/generated'
+import { useGetFormQuery, useSubmitResponseMutation, QuestionType } from '../../api/generated'
 import { useFormFiller } from './useFormFiller'
 import { QuestionInput } from './QuestionInput'
 import { SuccessScreen } from './SuccessScreen'
@@ -91,7 +89,7 @@ export const FormFillerPage: React.FC = () => {
             questionId={q.id}
             type={q.type as QuestionType}
             options={q.options ?? []}
-            value={answers[q.id] ?? (q.type === 'CHECKBOX' ? [] : '')}
+            value={answers[q.id] ?? (q.type === QuestionType.Checkbox ? [] : '')}
             onChange={val => setAnswer(q.id, val)}
             onToggle={opt => toggleCheckbox(q.id, opt)}
           />

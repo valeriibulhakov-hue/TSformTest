@@ -1,9 +1,9 @@
-import React from 'react'
 import type { AnswerValue } from './useFormFiller'
+import { QuestionType } from '../../api/generated'
 
 interface Props {
   questionId: string
-  type: 'TEXT' | 'MULTIPLE_CHOICE' | 'CHECKBOX' | 'DATE'
+  type: QuestionType
   options?: string[]
   value: AnswerValue
   onChange: (value: AnswerValue) => void
@@ -13,7 +13,7 @@ interface Props {
 export const QuestionInput: React.FC<Props> = ({
   type, options = [], value, onChange, onToggle,
 }) => {
-  if (type === 'TEXT') {
+  if (type === QuestionType.Text) {
     return (
       <textarea
         className="glass-input"
@@ -26,7 +26,7 @@ export const QuestionInput: React.FC<Props> = ({
     )
   }
 
-  if (type === 'DATE') {
+  if (type === QuestionType.Date) {
     return (
       <input
         type="date"
@@ -38,7 +38,7 @@ export const QuestionInput: React.FC<Props> = ({
     )
   }
 
-  if (type === 'MULTIPLE_CHOICE') {
+  if (type === QuestionType.MultipleChoice) {
     return (
       <div style={{ display: 'flex', flexDirection: 'column', gap: 8 }}>
         {options.map(opt => {

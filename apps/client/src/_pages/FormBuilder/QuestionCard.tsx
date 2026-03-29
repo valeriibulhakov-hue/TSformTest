@@ -1,19 +1,20 @@
 import React from 'react'
 import { Trash2 } from 'lucide-react'
-import type { Question, QuestionType } from './useFormBuilder'
+import type { Question } from './useFormBuilder'
+import { QuestionType } from '../../api/generated'
 
 const TYPE_LABELS: Record<QuestionType, string> = {
-  TEXT: 'Text',
-  MULTIPLE_CHOICE: 'Multiple choice',
-  CHECKBOX: 'Checkbox',
-  DATE: 'Date',
+  [QuestionType.Text]:           'Text',
+  [QuestionType.MultipleChoice]: 'Multiple choice',
+  [QuestionType.Checkbox]:       'Checkbox',
+  [QuestionType.Date]:           'Date',
 }
 
 const TYPE_COLORS: Record<QuestionType, { bg: string; color: string; border: string }> = {
-  TEXT:            { bg: 'rgba(56,189,248,0.1)',   color: '#38bdf8', border: 'rgba(56,189,248,0.2)' },
-  MULTIPLE_CHOICE: { bg: 'rgba(167,139,250,0.1)',  color: '#a78bfa', border: 'rgba(167,139,250,0.2)' },
-  CHECKBOX:        { bg: 'rgba(251,191,36,0.1)',   color: '#fbbf24', border: 'rgba(251,191,36,0.2)' },
-  DATE:            { bg: 'rgba(52,211,153,0.1)',   color: '#34d399', border: 'rgba(52,211,153,0.2)' },
+  [QuestionType.Text]:           { bg: 'rgba(56,189,248,0.1)',  color: '#38bdf8', border: 'rgba(56,189,248,0.2)' },
+  [QuestionType.MultipleChoice]: { bg: 'rgba(167,139,250,0.1)', color: '#a78bfa', border: 'rgba(167,139,250,0.2)' },
+  [QuestionType.Checkbox]:       { bg: 'rgba(251,191,36,0.1)',  color: '#fbbf24', border: 'rgba(251,191,36,0.2)' },
+  [QuestionType.Date]:           { bg: 'rgba(52,211,153,0.1)',  color: '#34d399', border: 'rgba(52,211,153,0.2)' },
 }
 
 interface Props {
