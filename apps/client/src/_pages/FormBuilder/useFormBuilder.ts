@@ -1,6 +1,6 @@
 import { useState, useCallback } from 'react'
 import { v4 as uuid } from 'uuid'
-import type { QuestionType } from '../../api/generated'
+import { QuestionType } from '../../api/generated'
 import {
   validateFormBuilder,
   isBuilderValid,
@@ -23,7 +23,7 @@ export interface FormDraft {
 const makeQuestion = (): Question => ({
   id: uuid(),
   title: '',
-  type: 'TEXT',
+  type: QuestionType.Text,
   options: [],
 })
 

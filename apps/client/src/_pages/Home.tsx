@@ -1,9 +1,7 @@
-import React from 'react'
 import { Link } from 'react-router-dom'
 import { FileText, ArrowRight, BarChart2, Plus, Trash2 } from 'lucide-react'
-import { useDispatch } from 'react-redux'
 import type { GetFormsQuery } from '../api/generated'
-import { useGetFormsQuery, useDeleteFormMutation, api } from '../api/generated'
+import { useGetFormsQuery, useDeleteFormMutation } from '../api/generated'
 
 type FormItem = GetFormsQuery['forms'][number]
 
@@ -67,13 +65,12 @@ const ACCENT_COLORS = ['#818cf8', '#2dd4bf', '#fb7185', '#fbbf24', '#34d399']
 
 const FormCard: React.FC<{ form: FormItem; delay: number }> = ({ form, delay }) => {
   const color = ACCENT_COLORS[Math.abs(form.id.charCodeAt(0)) % ACCENT_COLORS.length]
-  const dispatch = useDispatch()
   const [deleteForm] = useDeleteFormMutation()
 
- const handleDelete = async (e: React.MouseEvent) => {
-  e.preventDefault()
-  await deleteForm({ id: form.id })
-}
+  const handleDelete = async (e: React.MouseEvent) => {
+    e.preventDefault()
+    await deleteForm({ id: form.id })
+  }
 
   return (
     <div
